@@ -20,12 +20,12 @@ class MovieForm extends Form {
     if (movieId === "new") return;
 
     const movie = getMovie(movieId);
-    if (!movie) return this.props.history.replace("/not-found");
+    if (!movie) return this.props.history.replace("/not-found"); // 不是push
 
     this.setState({ data: this.mapToViewModel(movie) });
   }
 
-  mapToViewModel(movie) {
+  mapToViewModel(movie) { // 视图模型
     return {
       _id: movie._id,
       title: movie.title,

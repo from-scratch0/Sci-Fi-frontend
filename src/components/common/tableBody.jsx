@@ -3,8 +3,8 @@ import _ from "lodash";
 
 class TableBody extends Component {
   renderCell = (item, column) => {
-    if (column.content) return column.content(item);
-    return _.get(item, column.path); //
+    if (column.content) return column.content(item); // 有content函数属性
+    return _.get(item, column.path); // 有多个嵌套属性时 _.get获取属性
   };
 
   creatKey = (item, column) => {

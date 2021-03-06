@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Input: liked: boolean
-// onClick
+// Output: onClick
 
 class Like extends Component {
   render() {

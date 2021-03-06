@@ -20,17 +20,20 @@ class Movies extends Component {
     sortColumn: { path: "title", order: "asc" },
   };
 
+  // 与服务器通信的时机
   componentDidMount() {
     const genres = [{ _id: "", name: "All Genres" }, ...getGenres()]; // Adding All Genres
 
     this.setState({ movies: getMovies(), genres });
   }
 
+  // 删除列表项
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m._id !== movie._id);
     this.setState({ movies }); // movies: movies
   };
 
+  // 不要直接操作state copy以后操作
   handleLike = (movie) => {
     const movies = [...this.state.movies];
     const index = movies.indexOf(movie);
@@ -44,8 +47,8 @@ class Movies extends Component {
   };
 
   handleGenreSelect = (genre) => {
-    this.setState({ selectedGenre: genre, currentPage: 1, searchQuery: "" }); //
-  };
+    this.setState({ selectedGenre: genre, currentPage: 1, searchQuery: "" }); 
+  }; // 改变分类时需要回到第一页 // searchBox是受控组件 如果设为null或undefined 会被认为在操作不受控组件从而出错
 
   handleSearch = (query) => {
     this.setState({ searchQuery: query, selectedGenre: null, currentPage: 1 });
@@ -65,6 +68,7 @@ class Movies extends Component {
       searchQuery,
     } = this.state;
 
+    // 先搜索或分类、然后排序，最后分页
     let filtered = allMovies;
     if (searchQuery)
       filtered = allMovies.filter((m) =>

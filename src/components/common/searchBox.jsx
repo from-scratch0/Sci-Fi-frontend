@@ -9,6 +9,7 @@ const SearchBox = ({ value, onChange }) => {
       placeholder="Search..."
       value={value}
       onChange={(e) => onChange(e.currentTarget.value)}
+      // 传入输入的字符
     />
   );
 };

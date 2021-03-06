@@ -10,59 +10,37 @@ class Form extends Component {
     errors: {},
   };
 
+  // 对整个表单的验证
   validate = () => {
-    const options = { abortEarly: false };
+    const options = { abortEarly: false }; // 不要一有错误就提前终止
     const { error } = Joi.validate(this.state.data, this.schema, options);
-    // console.log(result);
     if (!error) return null;
 
     const errors = {};
     for (let item of error.details) errors[item.path[0]] = item.message;
-    // console.log(errors);
     return errors;
-
-    /*
-        const { data } = this.state;
-        if (data.username.trim() === "")
-          errors.username = "Username is required.";
-        if (data.password.trim() === "")
-          errors.password = "Password is required.";
-    
-        return Object.keys(errors).length === 0 ? null : errors;
-        */
   };
 
   handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // 取消按钮本来的行为
 
-    const errors = this.validate();
-    this.setState({ errors: errors || {} }); // null
+    const errors = this.validate(); // 没有错误时会返回null
+    this.setState({ errors: errors || {} }); // 避免被赋值为null
     if (errors) return;
 
-    this.doSubmit();
+    this.doSubmit(); // 表单提交行为
   };
 
-  // Validation on Change
+  // Validation on Change 动态验证输入域
   validateProperty = ({ name, value }) => {
     const obj = { [name]: value };
     const schema = { [name]: this.schema[name] };
     const { error } = Joi.validate(obj, schema);
     return error ? error.details[0].message : null;
-
-    /*
-    if (name === "username") {
-      if (value.trim() === "") return "Username is required.";
-      // ...
-    }
-    if (name === "password") {
-      if (value.trim() === "") return "Password is required.";
-      // ...
-    }
-    */
   };
 
-  handleChange = ({ currentTarget: input }) => {
-    // e
+  handleChange = ({ currentTarget: input }) => { // e.currentTarget
+    
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProperty(input);
     if (errorMessage) errors[input.name] = errorMessage;
@@ -74,7 +52,8 @@ class Form extends Component {
     this.setState({ data, errors });
   };
 
-  renderInput(name, label, type = "text") {
+  // 输入框
+  renderInput(name, label, type = "text") { // type
     const { data, errors } = this.state;
 
     return (
@@ -89,7 +68,8 @@ class Form extends Component {
     );
   }
 
-  renderSelect(name, label, options) {
+  // 下拉菜单
+  renderSelect(name, label, options) { 
     const { data, errors } = this.state;
 
     return (
@@ -106,7 +86,8 @@ class Form extends Component {
 
   renderButton(label) {
     return (
-      <button className="btn btn-primary" disabled={this.validate()}>
+      <button className="btn btn-primary" disabled={this.validate()}> 
+      {/* 验证失败时禁用 */}
         {label}
       </button>
     );

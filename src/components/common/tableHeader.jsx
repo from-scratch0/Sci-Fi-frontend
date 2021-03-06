@@ -8,9 +8,9 @@ import React, { Component } from "react";
 class TableHeader extends Component {
   raiseSort = (path) => {
     const sortColumn = { ...this.props.sortColumn };
-    if (sortColumn.path === path)
+    if (sortColumn.path === path) // 就在当前path，反向排序
       sortColumn.order = sortColumn.order === "asc" ? "desc" : "asc";
-    else {
+    else { // 新的path
       sortColumn.path = path;
       sortColumn.order = "asc";
     }
@@ -30,8 +30,8 @@ class TableHeader extends Component {
       <thead>
         <tr>
           {this.props.columns.map((column) => (
-            <th
-              style={{ cursor: "pointer" }}
+            <th 
+              className="clickable"
               key={column.path || column.key}
               onClick={() => this.raiseSort(column.path)}
             >

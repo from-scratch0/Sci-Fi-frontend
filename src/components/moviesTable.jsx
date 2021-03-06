@@ -17,7 +17,7 @@ class MoviesTable extends Component {
     { path: "dailyRentalRate", label: "Rate" },
     {
       key: "like",
-      content: (movie) => (
+      content: (movie) => ( // 传入movie
         <Like liked={movie.liked} onClick={() => this.props.onLike(movie)} />
       ),
     },
