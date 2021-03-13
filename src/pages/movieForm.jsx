@@ -1,8 +1,8 @@
 import React from "react";
 import Form from "../components/common/form";
 import Joi from "joi-browser";
-import { getGenres } from "../services/fakeGenreService";
-import { getMovie, saveMovie } from "../services/fakeMovieService";
+import { getGenres } from "../services/genreService";
+import { getMovie, saveMovie } from "../services/movieService";
 
 class MovieForm extends Form {
   state = {
@@ -11,18 +11,27 @@ class MovieForm extends Form {
     errors: {},
   };
 
-  componentDidMount() {
-    const genres = getGenres();
+  async populateGenres() {
+    const {data: genres} = await getGenres();
     this.setState({ options: genres });
+  }
 
-    const movieId = this.props.match.params.id;
-    console.log(movieId);
-    if (movieId === "new") return;
+  async populateMovies() {
+    try {
+      const movieId = this.props.match.params.id;
+      if (movieId === "new") return;
 
-    const movie = getMovie(movieId);
-    if (!movie) return this.props.history.replace("/not-found"); // 不是push
+      const {data: movie} = await getMovie(movieId);
+      this.setState({ data: this.mapToViewModel(movie) });
+    } catch (ex) {
+      if (ex.response && ex.response.status === 404)
+        this.props.history.replace("/not-found"); // 不是push
+    } 
+  }
 
-    this.setState({ data: this.mapToViewModel(movie) });
+  async componentDidMount() {
+    await this.populateGenres();
+    await this.populateMovies();
   }
 
   mapToViewModel(movie) { // 视图模型
@@ -47,10 +56,10 @@ class MovieForm extends Form {
     dailyRentalRate: Joi.number().min(0).max(10).required().label("Rate"),
   };
 
-  doSubmit = () => {
+  doSubmit = async () => {
     // Call the server
-    console.log(this.state.data.genreId);
-    saveMovie(this.state.data);
+
+    await saveMovie(this.state.data);
     this.props.history.push("/movies");
   };
 
