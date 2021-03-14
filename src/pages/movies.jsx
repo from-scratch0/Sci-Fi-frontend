@@ -24,7 +24,7 @@ class Movies extends Component {
   // 与服务器通信的时机
   async componentDidMount() {
     const { data } = await getGenres();
-    const genres = [{ _id: "", name: "All Genres" }, ...data]; // Adding All Genres
+    const genres = [{ _id: "", name: "全部" }, ...data]; // Adding All Genres
 
     const { data: movies } = await getMovies();
     this.setState({ movies, genres });
