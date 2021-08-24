@@ -8,6 +8,7 @@ class MoviesNavbar extends Component {
     { path: "/books", label: "书单" },
     { path: "/rentals", label: "科普" },
   ];
+  userItems = [];
 
   user = auth.getCurrentUser();
   
@@ -20,17 +21,17 @@ class MoviesNavbar extends Component {
   constructor() {
     super();
     if (this.user) {
-      this.navbarItems.push(this.userItem);
-      this.navbarItems.push(this.logoutItem);
+      this.userItems.push(this.userItem);
+      this.userItems.push(this.logoutItem);
     }
     else {
-      this.navbarItems.push(this.loginItem);
-      this.navbarItems.push(this.registerItem);
+      this.userItems.push(this.loginItem);
+      this.userItems.push(this.registerItem);
     }
   }
 
   render() {
-    return <Navbar navbarItems={this.navbarItems} />;
+    return <Navbar navbarItems={this.navbarItems} userItems={this.userItems} />;
   }
 }
 

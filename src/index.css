@@ -1,6 +1,9 @@
 body {
   margin: 0;
   padding: 0 0 0 0;
+  /* font-family: "Noto Serif", "Noto Serif CJK SC", "Noto Serif CJK",
+    "Source Han Serif SC", "Source Han Serif", source-han-serif-sc, "Arial",
+    "宋体", sans-serif !important; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -17,4 +20,30 @@ code {
 
 .clickable {
   cursor: pointer;
+}
+
+details {
+  font: 16px "Open Sans", "Arial", sans-serif;
+  width: 620px;
+}
+
+details > summary {
+  padding: 2px 6px;
+  width: 15em;
+  background-color: #ddd;
+  border: none;
+  box-shadow: 3px 3px 4px black;
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+details > p {
+  border-radius: 0 0 10px 10px;
+  background-color: #ddd;
+  padding: 2px 6px;
+  margin: 0;
+  box-shadow: 3px 3px 4px black;
 }

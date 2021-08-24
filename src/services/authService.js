@@ -17,7 +17,8 @@ export function loginWithJwt(jwt) {
 }
 
 export function logout() {
-  localStorage.removeItem(tokenKey);
+  localStorage.removeItem(tokenKey); // 在客户端删除token
+  // 数据库不保存token 不用在后端进行删除操作
 }
 
 export function getCurrentUser() {
