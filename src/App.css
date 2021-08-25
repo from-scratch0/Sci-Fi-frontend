@@ -4,7 +4,12 @@
   text-align: center;
 }
 
-.App-logo {
+.scifi-navbar {
+  position: fixed;
+  bottom: 50px;
+}
+
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
@@ -14,8 +19,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-/* @media (min-width: 1200px) {
+@media (min-width: 1200px) {
   .container,
   .container-sm,
   .container-md,
@@ -23,7 +27,7 @@
   .container-xl {
     max-width: 1300px !important;
   }
-} */
+} 
 
 .App-header {
   background-color: #282c34;
@@ -67,7 +71,7 @@
   height: 100vh;
   background: url(earth.png);
   background-repeat: round;
-  /* background-attachment: fixed; */
+  // background-attachment: fixed; 
   z-index: -1;
 }
 
@@ -185,4 +189,4 @@
   left: initial;
   animation-delay: 2.75s;
   animation-duration: 2.25s;
-}
+} */

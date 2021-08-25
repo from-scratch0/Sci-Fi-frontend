@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ navbarItems, userItems }) => {
   return (
-      <nav className="navbar navbar-expand-lg navbar-light sticky-top top-nav">
+      <nav className="navbar navbar-expand-lg navbar-light top-nav">
         <button
           className="navbar-toggler"
           type="button"

@@ -1,0 +1,8 @@
+.home-page {
+    background: black;
+    background-size: 1600%;
+    -webkit-animation: skygradient 180s ease infinite;
+    -moz-animation: skygradient 180s ease infinite;
+    -o-animation: skygradient 180s ease infinite;
+    animation: skygradient 180s ease infinite;
+}

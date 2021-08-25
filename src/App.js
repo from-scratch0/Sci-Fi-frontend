@@ -18,10 +18,10 @@ import "./App.css";
 
 class App extends Component {
   state = {};
-
+  
   componentDidMount() {
     const user = auth.getCurrentUser();
-    this.setState({ user });
+    this.setState({ user });  
   }
 
   render() {
@@ -30,33 +30,31 @@ class App extends Component {
     return (
       <React.Fragment>
         <ToastContainer />
-        <div className="row">
-          <div className="col-1">
+        <div>
+          <div className="scifi-navbar">
             <MoviesNavbar user={user} />
           </div>
-          <div className="col-11">
-            <main className="container">
-              <Switch>
-                <Route path="/register" component={RegisterForm} />
-                <Route path="/login" component={LoginForm} />
-                <Route path="/logout" component={Logout} />
-                <ProtectedRoute path="/movies/:id" component={MovieForm} />
-                <Route
-                  path="/movies"
-                  render={(props) => <Movies {...props} user={user} />}
-                />
-                <Route path="/books" component={Books} />
-                <Route path="/rentals" component={Rentals} />
-                <Route path="/not-found" component={NotFound} />
-                <Route
-                  path="/"
-                  render={(props) => <Home {...props} user={user} />}
-                />
-                {/* <Redirect from="/" exact to="/movies" /> */}
-                <Redirect to="/not-found" />
-              </Switch>
-            </main>
-          </div>
+          <main>
+            <Switch>
+              <Route path="/register" component={RegisterForm} />
+              <Route path="/login" component={LoginForm} />
+              <Route path="/logout" component={Logout} />
+              <ProtectedRoute path="/movies/:id" component={MovieForm} />
+              <Route
+                path="/movies"
+                render={(props) => <Movies {...props} user={user} />}
+              />
+              <Route path="/books" component={Books} />
+              <Route path="/rentals" component={Rentals} />
+              <Route path="/not-found" component={NotFound} />
+              <Route
+                path="/"
+                render={(props) => <Home {...props} user={user} />}
+              />
+              {/* <Redirect from="/" exact to="/movies" /> */}
+              <Redirect to="/not-found" />
+            </Switch>
+          </main>
         </div>
       </React.Fragment>
     );
